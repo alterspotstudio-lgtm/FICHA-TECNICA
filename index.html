@@ -1,333 +1,796 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Ficha Técnica · Método NERI</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Ficha de Propiedad · Método NERI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{
-  --black:#0A0A0A;
-  --black-2:#111111;
-  --black-3:#181818;
-  --gold:#C6A86B;
-  --gold-light:#E2C98A;
-  --gold-dim:rgba(198,168,107,0.12);
-  --gold-border:rgba(198,168,107,0.22);
-  --white:#FFFFFF;
-  --white-80:rgba(255,255,255,0.80);
-  --white-60:rgba(255,255,255,0.60);
-  --white-35:rgba(255,255,255,0.35);
-  --white-18:rgba(255,255,255,0.18);
-  --white-08:rgba(255,255,255,0.08);
-  --white-04:rgba(255,255,255,0.04);
-  --font-display:'Bebas Neue',sans-serif;
-  --font-body:'Montserrat',sans-serif;
-  --font-editorial:'Cormorant Garamond',serif;
-}
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;background:var(--black)}
-body{background:var(--black);color:var(--white);font-family:var(--font-body);min-height:100vh;overflow-x:hidden}
-body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:128px}
-a{color:inherit;text-decoration:none}
-button{font-family:inherit}
-.hidden{display:none!important}
-
-.topbar{position:fixed;top:0;left:0;right:0;z-index:50;height:58px;background:rgba(10,10,10,.82);backdrop-filter:blur(20px);border-bottom:1px solid var(--white-08);display:flex;align-items:center;justify-content:space-between;padding:0 28px}
-.brand{font-family:var(--font-display);font-size:22px;letter-spacing:6px;color:var(--gold)}
-.top-meta{display:flex;align-items:center;gap:16px;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--white-35);font-weight:700}
-.top-meta b{color:var(--white-60);font-weight:700}
-
-.loading{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:40px}
-.loading-card{max-width:520px;border:1px solid var(--gold-border);background:var(--gold-dim);padding:34px 38px;border-radius:3px}
-.loading-k{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);font-weight:800;margin-bottom:14px}
-.loading-title{font-family:var(--font-display);font-size:46px;letter-spacing:3px;line-height:.95}
-.loading-txt{font-size:12px;color:var(--white-50,var(--white-60));font-weight:300;line-height:1.8;margin-top:14px}
-
-.hero{min-height:100vh;display:grid;grid-template-columns:1.08fr .92fr;position:relative;border-bottom:1px solid var(--white-08)}
-.hero-copy{padding:112px 56px 54px;display:flex;flex-direction:column;justify-content:space-between;gap:38px;position:relative;z-index:2}
-.hero-eyebrow{font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);font-weight:800;display:flex;align-items:center;gap:14px;margin-bottom:22px}
-.hero-eyebrow::before{content:'';display:block;width:34px;height:1px;background:var(--gold)}
-.hero-title{font-family:var(--font-display);font-size:clamp(66px,9vw,128px);letter-spacing:5px;line-height:.82;max-width:820px}
-.hero-title em{color:var(--gold);font-style:normal}
-.hero-desc{font-family:var(--font-editorial);font-size:clamp(22px,2.4vw,34px);font-style:italic;font-weight:300;color:var(--white-60);line-height:1.35;max-width:660px;margin-top:26px}
-.hero-price{margin-top:34px;display:inline-flex;flex-direction:column;gap:8px;padding:18px 22px;border-left:2px solid var(--gold);background:linear-gradient(90deg,var(--gold-dim),transparent)}
-.hero-price span{font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:800}
-.hero-price b{font-family:var(--font-display);font-size:44px;letter-spacing:2px;color:var(--white);font-weight:400;line-height:.9}
-.hero-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:28px}
-.btn{border:1px solid var(--gold);background:transparent;color:var(--gold);padding:14px 20px;font-size:9px;letter-spacing:3px;text-transform:uppercase;font-weight:800;border-radius:2px;cursor:pointer;transition:.2s}
-.btn:hover{background:var(--gold);color:#050505}
-.btn.solid{background:var(--gold);color:#050505}
-.btn.solid:hover{background:var(--gold-light);border-color:var(--gold-light)}
-
-.hero-media{position:relative;min-height:100vh;background:var(--black-2);overflow:hidden;border-left:1px solid var(--white-08)}
-.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.85) contrast(1.08);opacity:.86}
-.hero-media::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,.06),rgba(10,10,10,.68)),linear-gradient(90deg,rgba(10,10,10,.55),transparent 45%)}
-.hero-placeholder{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:34vw;letter-spacing:-12px;color:rgba(198,168,107,.05)}
-.hero-location{position:absolute;left:24px;right:24px;bottom:24px;z-index:2;border:1px solid var(--white-08);background:rgba(10,10,10,.58);backdrop-filter:blur(16px);padding:18px 20px;border-radius:3px}
-.loc-k{font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:800;margin-bottom:7px}
-.loc-v{font-size:13px;color:var(--white-80);font-weight:300;line-height:1.6}
-
-.summary-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--white-04);border-bottom:1px solid var(--white-04)}
-.metric{background:var(--black);padding:28px 24px;min-height:118px}
-.metric-k{font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--white-35);font-weight:800;margin-bottom:12px}
-.metric-v{font-family:var(--font-display);font-size:42px;letter-spacing:2px;color:var(--gold);line-height:.95}
-.metric-s{font-size:10px;color:var(--white-35);font-weight:300;margin-top:6px;line-height:1.4}
-
-.section{padding:74px 56px;border-bottom:1px solid var(--white-04)}
-.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;margin-bottom:34px}
-.sec-eyebrow{font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);font-weight:800;margin-bottom:14px}
-.sec-title{font-family:var(--font-display);font-size:52px;letter-spacing:3px;line-height:.95}
-.sec-desc{font-size:12px;font-weight:300;color:var(--white-35);line-height:1.85;max-width:500px}
-
-.overview{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--white-04);border:1px solid var(--white-04)}
-.ov-card{background:var(--black);padding:34px 38px;min-height:220px}
-.ov-label{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);font-weight:800;margin-bottom:20px}
-.ov-text{font-size:14px;color:var(--white-60);font-weight:300;line-height:1.95}
-.ov-text strong{color:var(--white);font-weight:600}
-.ov-big{font-family:var(--font-editorial);font-size:32px;font-style:italic;font-weight:300;color:var(--white);line-height:1.35}
-
-.spec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--white-04);border:1px solid var(--white-04)}
-.spec{background:var(--black);padding:22px 24px;min-height:108px}
-.spec-k{font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--white-35);font-weight:800;margin-bottom:10px}
-.spec-v{font-size:15px;color:var(--white-80);font-weight:400;line-height:1.5;word-break:break-word}
-
-.video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.video-card{border:1px solid var(--white-08);background:var(--black-2);border-radius:3px;overflow:hidden;min-height:210px;display:flex;flex-direction:column;transition:.2s}
-.video-card:hover{border-color:var(--gold-border);transform:translateY(-2px)}
-.video-frame{height:150px;background:var(--black-3);position:relative;overflow:hidden}
-.video-frame iframe,.video-frame video{width:100%;height:100%;border:0;object-fit:cover;display:block}
-.video-empty{height:100%;display:flex;align-items:center;justify-content:center;color:var(--white-18);font-family:var(--font-display);font-size:52px;letter-spacing:2px}
-.video-body{padding:16px 18px}
-.video-k{font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:800;margin-bottom:7px}
-.video-v{font-size:12px;color:var(--white-50,var(--white-60));font-weight:300;line-height:1.55}
-
-.cta-section{padding:78px 56px;background:linear-gradient(180deg,var(--black),#060606);text-align:center}
-.cta-k{font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);font-weight:800;margin-bottom:18px}
-.cta-title{font-family:var(--font-display);font-size:clamp(48px,7vw,86px);letter-spacing:4px;line-height:.9;margin-bottom:20px}
-.cta-desc{font-size:13px;color:var(--white-35);font-weight:300;line-height:1.9;max-width:640px;margin:0 auto 28px}
-.footer{border-top:1px solid var(--white-08);padding:26px 30px;display:flex;justify-content:space-between;gap:18px;color:var(--white-35);font-size:9px;letter-spacing:2px;text-transform:uppercase;font-weight:700}
-.footer b{color:var(--gold);font-weight:800}
-
-@media(max-width:920px){
-  .topbar{height:54px;padding:0 18px}.top-meta{display:none}.hero{grid-template-columns:1fr}.hero-media{min-height:54vh;border-left:0;border-top:1px solid var(--white-08)}.hero-copy{padding:92px 24px 38px}.summary-strip{grid-template-columns:repeat(2,1fr)}.overview{grid-template-columns:1fr}.spec-grid{grid-template-columns:1fr 1fr}.video-grid{grid-template-columns:1fr}.section{padding:54px 24px}.section-head{display:block}.sec-desc{margin-top:14px}.footer{display:block;line-height:1.9}.cta-section{padding:58px 24px}.metric{padding:22px 18px}.hero-title{font-size:72px}.hero-desc{font-size:24px}
+:root{
+  --black:#080808;
+  --surface:#0f0f0f;
+  --surface2:#161616;
+  --gold:#C9A96E;
+  --gold2:#E5CC9A;
+  --golddim:rgba(201,169,110,.08);
+  --goldbdr:rgba(201,169,110,.22);
+  --white:#FFFFFF;
+  --w80:rgba(255,255,255,.80);
+  --w60:rgba(255,255,255,.60);
+  --w40:rgba(255,255,255,.40);
+  --w20:rgba(255,255,255,.20);
+  --w08:rgba(255,255,255,.08);
+  --w04:rgba(255,255,255,.04);
+  --green:#4ade80;
+  --red:#f87171;
+  --display:'Bebas Neue',sans-serif;
+  --mono:'DM Mono',monospace;
 }
-@media(max-width:540px){.summary-strip,.spec-grid{grid-template-columns:1fr}.hero-actions{align-items:stretch}.btn{width:100%}}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:'Montserrat',sans-serif;min-height:100vh;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+/* ── GRAIN ── */
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.02;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:128px}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes pulse{0%,100%{opacity:.35}50%{opacity:.9}}
+
+/* ── LOADING ── */
+#screen-loading{
+  position:fixed;inset:0;z-index:500;background:var(--black);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;
+}
+.loading-logo{font-family:var(--display);font-size:48px;letter-spacing:8px;color:var(--gold);animation:pulse 1.8s ease-in-out infinite}
+.loading-sub{font-size:8px;letter-spacing:4px;text-transform:uppercase;color:var(--w40);font-weight:700}
+.loading-bar{width:140px;height:1px;background:var(--w08);overflow:hidden;border-radius:1px}
+.loading-fill{height:100%;background:var(--gold);animation:loading-anim 1.4s ease-in-out infinite}
+@keyframes loading-anim{0%{width:0;margin-left:0}50%{width:100%;margin-left:0}100%{width:0;margin-left:100%}}
+
+/* ── ERROR ── */
+#screen-error{
+  position:fixed;inset:0;z-index:400;background:var(--black);
+  display:none;flex-direction:column;align-items:center;justify-content:center;gap:14px;
+  padding:40px;text-align:center;
+}
+.err-icon{font-size:32px;color:var(--w20)}
+.err-title{font-family:var(--display);font-size:30px;letter-spacing:3px;color:var(--w40)}
+.err-sub{font-size:12px;color:var(--w40);font-weight:300;line-height:1.8;max-width:320px}
+
+/* ── MAIN ── */
+#screen-main{display:none}
+
+/* ── TOPBAR ── */
+.topbar{
+  position:sticky;top:0;z-index:100;
+  background:rgba(8,8,8,.96);border-bottom:1px solid rgba(255,255,255,.06);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 24px;height:48px;
+  backdrop-filter:blur(16px);
+}
+.tb-logo{font-family:var(--display);font-size:18px;letter-spacing:5px;color:var(--gold)}
+.tb-folio{font-family:var(--mono);font-size:10px;color:var(--w40);letter-spacing:1.5px}
+.tb-estado{
+  display:flex;align-items:center;gap:6px;
+  font-size:7px;letter-spacing:2px;text-transform:uppercase;font-weight:800;
+}
+.tb-dot{width:5px;height:5px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+
+/* ── HERO ── */
+.hero{position:relative;min-height:60vh;max-height:78vh;overflow:hidden;background:#080808}
+.hero-img{
+  width:100%;height:100%;object-fit:cover;
+  position:absolute;inset:0;
+  filter:brightness(.55);
+}
+.hero-placeholder{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+}
+.hero-placeholder-txt{
+  font-family:var(--display);font-size:120px;letter-spacing:-4px;
+  color:rgba(201,169,110,.06);user-select:none;
+}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(8,8,8,.0) 30%,rgba(8,8,8,.65) 70%,rgba(8,8,8,1) 100%);
+}
+.hero-content{
+  position:relative;z-index:2;
+  height:100%;min-height:inherit;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:36px 32px 40px;
+}
+.hero-tag{
+  font-size:7px;letter-spacing:4px;text-transform:uppercase;
+  color:var(--gold);font-weight:800;margin-bottom:10px;
+  display:flex;align-items:center;gap:10px;
+}
+.hero-tag::before{content:'';width:24px;height:1px;background:var(--gold);display:block}
+.hero-nombre{
+  font-family:var(--display);font-size:clamp(42px,6vw,80px);
+  letter-spacing:3px;line-height:.88;
+  color:var(--white);text-shadow:0 2px 32px rgba(0,0,0,.5);
+}
+.hero-folio{
+  font-family:var(--mono);font-size:11px;color:rgba(201,169,110,.8);
+  letter-spacing:2.5px;margin-top:10px;
+}
+
+/* ── PRECIO STRIP ── */
+.precio-strip{
+  background:linear-gradient(90deg,rgba(201,169,110,.14),rgba(201,169,110,.04) 70%,transparent);
+  border-top:1px solid var(--goldbdr);border-bottom:1px solid rgba(255,255,255,.04);
+  padding:20px 32px;display:flex;align-items:center;justify-content:space-between;gap:20px;
+  flex-wrap:wrap;
+}
+.precio-main{display:flex;align-items:baseline;gap:10px}
+.precio-num{font-family:var(--display);font-size:clamp(48px,7vw,80px);letter-spacing:1px;color:var(--gold);line-height:1}
+.precio-currency{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--w60);font-weight:700;align-self:center}
+.precio-right{text-align:right}
+.precio-minimo{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--w40);font-weight:700}
+.precio-minimo span{font-family:var(--mono);color:var(--w60);font-size:13px;display:block;margin-top:2px;letter-spacing:1px}
+.plusvalia-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  border:1px solid var(--goldbdr);background:var(--golddim);
+  border-radius:2px;padding:6px 12px;
+  font-size:7px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--gold);font-weight:800;
+}
+
+/* ── SECCIÓN ── */
+.section{padding:40px 32px;border-bottom:1px solid rgba(255,255,255,.04)}
+.section:last-child{border-bottom:none}
+.sec-eyebrow{
+  font-size:6px;letter-spacing:4px;text-transform:uppercase;
+  color:var(--gold);font-weight:800;margin-bottom:12px;
+  display:flex;align-items:center;gap:10px;
+}
+.sec-eyebrow::after{content:'';flex:0 0 32px;height:1px;background:var(--goldbdr)}
+.sec-title{font-family:var(--display);font-size:28px;letter-spacing:2px;margin-bottom:22px;color:var(--white)}
+.sec-intro{font-size:14px;color:var(--w60);font-weight:300;line-height:1.85;max-width:640px}
+
+/* ── SPECS GRID ── */
+.specs-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.05);
+  border-radius:2px;overflow:hidden;margin-top:22px;
+}
+.spec{
+  background:var(--surface);padding:18px 16px;
+  display:flex;flex-direction:column;gap:5px;
+}
+.spec-val{font-family:var(--display);font-size:36px;letter-spacing:1px;color:var(--gold);line-height:1}
+.spec-lbl{font-size:7px;letter-spacing:2.5px;text-transform:uppercase;color:var(--w40);font-weight:700}
+
+/* ── DATOS TABLA ── */
+.datos-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.05);border-radius:2px;overflow:hidden;margin-top:22px}
+.dato{background:var(--surface);padding:14px 16px}
+.dato-k{font-size:7px;letter-spacing:2px;text-transform:uppercase;color:var(--w40);font-weight:700;margin-bottom:4px}
+.dato-v{font-size:13px;color:var(--w80);font-weight:400;line-height:1.5}
+.dato-v.empty{color:var(--w20);font-style:italic;font-size:11px}
+.dato.full{grid-column:1/-1}
+
+/* ── FRASE ── */
+.frase-block{
+  padding:28px 32px;margin:0;
+  border-left:2px solid var(--gold);
+  background:linear-gradient(90deg,rgba(201,169,110,.06),transparent);
+}
+.frase-text{
+  font-size:clamp(16px,2.2vw,22px);color:var(--w80);font-weight:300;
+  line-height:1.65;letter-spacing:.3px;
+}
+.frase-text strong{color:var(--gold);font-weight:600}
+
+/* ── PLUSVALIA DETALLE ── */
+.plusvalia-block{
+  border:1px solid var(--goldbdr);background:rgba(201,169,110,.06);
+  border-radius:2px;padding:20px 22px;margin-top:22px;
+}
+.plusvalia-val{font-family:var(--display);font-size:42px;letter-spacing:2px;color:var(--gold);margin-bottom:8px}
+.plusvalia-txt{font-size:13px;color:var(--w60);font-weight:300;line-height:1.7}
+
+/* ── VIDEO GRID ── */
+.video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:rgba(255,255,255,.05);margin-top:22px;border-radius:2px;overflow:hidden}
+.video-item{background:var(--surface);position:relative;overflow:hidden}
+.video-wrap{position:relative;padding-top:56.25%}
+.video-wrap iframe,.video-wrap video{position:absolute;inset:0;width:100%;height:100%;border:none}
+.video-lbl{padding:10px 14px;font-size:8px;letter-spacing:2.5px;text-transform:uppercase;color:var(--w40);font-weight:700;border-top:1px solid rgba(255,255,255,.05)}
+
+/* ── MAPA ── */
+.mapa-wrap{height:320px;border-radius:2px;overflow:hidden;background:#111;margin-top:22px;position:relative}
+.mapa-wrap iframe{width:100%;height:100%;border:none}
+.mapa-empty{height:100%;display:flex;align-items:center;justify-content:center}
+.mapa-empty-txt{font-size:11px;color:var(--w20);letter-spacing:2px;text-transform:uppercase}
+
+/* ── TOUR ── */
+.tour-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  border:1px solid var(--goldbdr);background:var(--golddim);
+  padding:14px 24px;border-radius:2px;margin-top:16px;
+  font-size:8px;letter-spacing:3px;text-transform:uppercase;font-weight:800;color:var(--gold);
+  transition:all .15s;cursor:pointer;text-decoration:none;
+}
+.tour-btn:hover{background:rgba(201,169,110,.18)}
+.tour-btn-icon{font-size:18px}
+
+/* ── ASESOR ── */
+.asesor-section{
+  background:var(--surface);
+  border-top:1px solid rgba(255,255,255,.06);
+  padding:40px 32px;
+}
+.asesor-card{
+  border:1px solid var(--goldbdr);border-top:2px solid var(--gold);
+  border-radius:2px;background:rgba(201,169,110,.04);
+  padding:28px;display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:start;
+  max-width:520px;
+}
+.asesor-foto{
+  width:72px;height:72px;border-radius:2px;
+  object-fit:cover;border:1px solid var(--goldbdr);
+  background:#111;flex-shrink:0;
+}
+.asesor-foto-empty{
+  width:72px;height:72px;border-radius:2px;
+  border:1px solid var(--goldbdr);background:#111;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--display);font-size:22px;letter-spacing:2px;color:var(--gold);
+}
+.asesor-nombre{font-family:var(--display);font-size:22px;letter-spacing:2px;color:var(--white);margin-bottom:4px}
+.asesor-empresa{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--w40);font-weight:700;margin-bottom:14px}
+.asesor-frase{font-size:12px;color:var(--w60);font-weight:300;line-height:1.7;margin-bottom:16px}
+.asesor-wa{
+  display:inline-flex;align-items:center;gap:9px;
+  background:rgba(74,222,128,.12);border:1px solid rgba(74,222,128,.3);
+  border-radius:2px;padding:12px 20px;
+  font-size:8px;letter-spacing:3px;text-transform:uppercase;font-weight:800;
+  color:#4ade80;text-decoration:none;transition:all .15s;
+}
+.asesor-wa:hover{background:rgba(74,222,128,.22)}
+.asesor-wa-icon{font-size:16px}
+
+/* ── FOOTER ── */
+.footer{
+  padding:24px 32px;border-top:1px solid rgba(255,255,255,.04);
+  display:flex;align-items:center;justify-content:space-between;
+  background:#050505;
+}
+.footer-logo{font-family:var(--display);font-size:14px;letter-spacing:4px;color:var(--w20)}
+.footer-legal{font-size:9px;color:var(--w20);font-weight:300;letter-spacing:.5px}
+
+/* ── SKELETON ── */
+.skel{
+  background:linear-gradient(90deg,var(--w04) 25%,var(--w08) 50%,var(--w04) 75%);
+  background-size:200% 100%;animation:shimmer 1.4s infinite;
+  border-radius:2px;
+}
+
+/* ── BADGE ESTADO ── */
+.badge-disponible{color:#4ade80;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.25);padding:3px 10px;border-radius:2px;font-size:7px;letter-spacing:1.5px;text-transform:uppercase;font-weight:800}
+.badge-apartada{color:#fbbf24;background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.25);padding:3px 10px;border-radius:2px;font-size:7px;letter-spacing:1.5px;text-transform:uppercase;font-weight:800}
+.badge-vendida{color:#60a5fa;background:rgba(96,165,250,.1);border:1px solid rgba(96,165,250,.25);padding:3px 10px;border-radius:2px;font-size:7px;letter-spacing:1.5px;text-transform:uppercase;font-weight:800}
+
+/* ── RESPONSIVE ── */
+@media(max-width:600px){
+  .hero-content{padding:24px 20px 30px}
+  .precio-strip{padding:16px 20px}
+  .section{padding:32px 20px}
+  .frase-block{padding:22px 20px}
+  .asesor-section{padding:32px 20px}
+  .footer{padding:20px;flex-direction:column;gap:8px;text-align:center}
+  .datos-grid{grid-template-columns:1fr}
+  .dato.full{grid-column:1}
+  .asesor-card{grid-template-columns:1fr;max-width:100%}
+}
 </style>
 </head>
 <body>
-  <div id="loading" class="loading">
-    <div class="loading-card">
-      <div class="loading-k">Ficha técnica inmobiliaria</div>
-      <div class="loading-title">Cargando propiedad</div>
-      <div class="loading-txt">Esta página se pinta con la información activa de la ficha de propiedad.</div>
+
+<!-- LOADING -->
+<div id="screen-loading">
+  <div class="loading-logo">NERI</div>
+  <div class="loading-sub">Cargando ficha de propiedad</div>
+  <div class="loading-bar"><div class="loading-fill"></div></div>
+</div>
+
+<!-- ERROR -->
+<div id="screen-error">
+  <div class="err-icon">◎</div>
+  <div class="err-title">SIN DATOS</div>
+  <div class="err-sub" id="err-msg">No se encontró la propiedad. Verifica el enlace o solicita uno nuevo a tu asesor.</div>
+</div>
+
+<!-- MAIN -->
+<div id="screen-main">
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <span class="tb-logo">NERI</span>
+    <span class="tb-folio" id="tb-folio">—</span>
+    <div class="tb-estado">
+      <div class="tb-dot"></div>
+      <span id="tb-estado-txt">Ficha activa</span>
+    </div>
+  </header>
+
+  <!-- HERO FOTO + NOMBRE -->
+  <div class="hero" id="hero-block" style="min-height:55vw;max-height:80vh">
+    <div class="hero-placeholder"><div class="hero-placeholder-txt">N</div></div>
+    <img class="hero-img" id="hero-img" src="" alt="Foto de la propiedad" style="display:none">
+    <div class="hero-overlay"></div>
+    <div class="hero-content" style="animation:fadeUp .6s ease forwards">
+      <div class="hero-tag" id="hero-tipo">Casa · Residencial</div>
+      <div class="hero-nombre" id="hero-nombre">Cargando…</div>
+      <div class="hero-folio" id="hero-folio-sub"></div>
     </div>
   </div>
 
-  <main id="app" class="hidden">
-    <header class="topbar">
-      <div class="brand">NERI</div>
-      <div class="top-meta"><span id="top-folio">Folio —</span><span>·</span><b id="top-status">Disponible</b></div>
-    </header>
-
-    <section class="hero">
-      <div class="hero-copy">
-        <div>
-          <div class="hero-eyebrow" id="hero-type">Ficha técnica inmobiliaria</div>
-          <h1 class="hero-title" id="hero-title">Propiedad <em>NERI</em></h1>
-          <div class="hero-desc" id="hero-phrase">Una propiedad presentada con claridad, orden y criterio.</div>
-          <div class="hero-price" id="price-box"><span>Precio de lista</span><b id="hero-price">—</b></div>
-          <div class="hero-actions">
-            <a class="btn solid" id="tour-btn" target="_blank" rel="noopener">Tour virtual</a>
-            <a class="btn" id="maps-btn" target="_blank" rel="noopener">Ubicación</a>
-            <button class="btn" onclick="shareFicha()">Compartir ficha</button>
-          </div>
-        </div>
+  <!-- PRECIO -->
+  <div class="precio-strip" id="precio-strip" style="display:none">
+    <div class="precio-main">
+      <div class="precio-num" id="precio-num">—</div>
+      <div class="precio-currency" id="precio-currency">MXN</div>
+    </div>
+    <div class="precio-right">
+      <div id="precio-minimo-wrap" style="display:none">
+        <div class="precio-minimo">Precio mínimo<span id="precio-min-num"></span></div>
       </div>
-      <div class="hero-media">
-        <div class="hero-placeholder">N</div>
-        <img id="hero-img" class="hero-img hidden" alt="Foto de portada de la propiedad">
-        <div class="hero-location">
-          <div class="loc-k">Ubicación</div>
-          <div class="loc-v" id="hero-location">—</div>
-        </div>
+      <div id="plusvalia-badge-wrap" style="display:none">
+        <div class="plusvalia-badge">↗ <span id="plusvalia-badge-val"></span> plusvalía</div>
       </div>
-    </section>
+    </div>
+  </div>
 
-    <section class="summary-strip" id="summary-strip"></section>
+  <!-- FRASE DE PORTADA -->
+  <div class="frase-block" id="frase-block" style="display:none">
+    <div class="frase-text" id="frase-text"></div>
+  </div>
 
-    <section class="section">
-      <div class="section-head">
-        <div>
-          <div class="sec-eyebrow">Lectura rápida</div>
-          <h2 class="sec-title">LO ESENCIAL</h2>
-        </div>
-        <p class="sec-desc">La ficha no sustituye la visita. Ordena la información para que el comprador entienda qué está viendo antes de decidir.</p>
+  <!-- SPECS NUMÉRICAS -->
+  <section class="section">
+    <div class="sec-eyebrow">La propiedad</div>
+    <div class="sec-title" id="specs-titulo">Características</div>
+    <div class="sec-intro" id="specs-intro" style="display:none"></div>
+    <div class="specs-grid" id="specs-grid">
+      <div class="spec"><div class="spec-val skel" style="width:40px;height:36px"></div><div class="spec-lbl skel" style="width:60px;height:10px;margin-top:4px"></div></div>
+      <div class="spec"><div class="spec-val skel" style="width:40px;height:36px"></div><div class="spec-lbl skel" style="width:60px;height:10px;margin-top:4px"></div></div>
+      <div class="spec"><div class="spec-val skel" style="width:40px;height:36px"></div><div class="spec-lbl skel" style="width:60px;height:10px;margin-top:4px"></div></div>
+      <div class="spec"><div class="spec-val skel" style="width:40px;height:36px"></div><div class="spec-lbl skel" style="width:60px;height:10px;margin-top:4px"></div></div>
+    </div>
+  </section>
+
+  <!-- DATOS DE UBICACIÓN Y TIPO -->
+  <section class="section" id="section-datos">
+    <div class="sec-eyebrow">Ubicación y tipo</div>
+    <div class="sec-title">Detalle de la propiedad</div>
+    <div class="datos-grid" id="datos-grid"></div>
+  </section>
+
+  <!-- PLUSVALÍA DETALLADA -->
+  <section class="section" id="section-plusvalia" style="display:none">
+    <div class="sec-eyebrow">Inversión</div>
+    <div class="sec-title">Plusvalía</div>
+    <div class="plusvalia-block">
+      <div class="plusvalia-val" id="plusvalia-val"></div>
+      <div class="plusvalia-txt" id="plusvalia-txt"></div>
+    </div>
+  </section>
+
+  <!-- TOUR VIRTUAL -->
+  <section class="section" id="section-tour" style="display:none">
+    <div class="sec-eyebrow">Recorrido</div>
+    <div class="sec-title">Tour virtual</div>
+    <a class="tour-btn" id="tour-link" href="#" target="_blank" rel="noopener">
+      <span class="tour-btn-icon">▶</span>
+      Abrir tour virtual →
+    </a>
+  </section>
+
+  <!-- VIDEOS -->
+  <section class="section" id="section-videos" style="display:none">
+    <div class="sec-eyebrow">Ambientes</div>
+    <div class="sec-title">Videos de la propiedad</div>
+    <div class="video-grid" id="video-grid"></div>
+  </section>
+
+  <!-- MAPA -->
+  <section class="section" id="section-mapa" style="display:none">
+    <div class="sec-eyebrow">Localización</div>
+    <div class="sec-title">Ubicación</div>
+    <div class="mapa-wrap" id="mapa-wrap"></div>
+    <div style="margin-top:12px;font-size:11px;color:var(--w40)" id="mapa-dir"></div>
+  </section>
+
+  <!-- ASESOR -->
+  <div class="asesor-section" id="section-asesor" style="display:none">
+    <div class="sec-eyebrow" style="margin-bottom:18px">Tu asesor</div>
+    <div class="asesor-card">
+      <div id="asesor-foto-wrap">
+        <div class="asesor-foto-empty">A</div>
       </div>
-      <div class="overview">
-        <article class="ov-card">
-          <div class="ov-label">Frase de inicio</div>
-          <div class="ov-big" id="frase-inicio">—</div>
-        </article>
-        <article class="ov-card">
-          <div class="ov-label">Plusvalía / contexto</div>
-          <div class="ov-text" id="plusvalia-texto">—</div>
-        </article>
+      <div>
+        <div class="asesor-nombre" id="asesor-nombre">—</div>
+        <div class="asesor-empresa" id="asesor-empresa"></div>
+        <div class="asesor-frase" id="asesor-frase"></div>
+        <a class="asesor-wa" id="asesor-wa" href="#" target="_blank" rel="noopener">
+          <span class="asesor-wa-icon">✆</span>
+          Escribir por WhatsApp
+        </a>
       </div>
-    </section>
+    </div>
+  </div>
 
-    <section class="section">
-      <div class="section-head">
-        <div>
-          <div class="sec-eyebrow">Datos técnicos</div>
-          <h2 class="sec-title">FICHA DE LA PROPIEDAD</h2>
-        </div>
-        <p class="sec-desc">Información tomada de la ficha interna. Si la intranet cambia, esta página cambia al volver a cargar.</p>
-      </div>
-      <div class="spec-grid" id="spec-grid"></div>
-    </section>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">NERI</div>
+    <div class="footer-legal">Ficha técnica generada por Método NERI · Los datos son referenciales y sujetos a cambios.</div>
+  </footer>
 
-    <section class="section" id="videos-section">
-      <div class="section-head">
-        <div>
-          <div class="sec-eyebrow">Recorrido visual</div>
-          <h2 class="sec-title">VIDEOS</h2>
-        </div>
-        <p class="sec-desc">Cada bloque se pinta solo cuando existe video MP4 o ID de YouTube en la ficha.</p>
-      </div>
-      <div class="video-grid" id="video-grid"></div>
-    </section>
-
-    <section class="cta-section">
-      <div class="cta-k">Siguiente paso</div>
-      <h2 class="cta-title">VERIFICAR ANTES DE DECIDIR</h2>
-      <p class="cta-desc">Una propiedad merece revisarse con orden: datos, ubicación, estado, metraje, precio y experiencia de visita.</p>
-      <div class="hero-actions" style="justify-content:center">
-        <a class="btn solid" id="cta-tour" target="_blank" rel="noopener">Abrir tour</a>
-        <a class="btn" id="cta-maps" target="_blank" rel="noopener">Ver ubicación</a>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <span><b>Método NERI</b> · Ficha técnica inmobiliaria</span>
-      <span id="footer-folio">Folio —</span>
-    </footer>
-  </main>
+</div><!-- /screen-main -->
 
 <script>
-const $ = id => document.getElementById(id);
-const clean = v => (v === null || v === undefined || v === '') ? '' : String(v);
-const money = (v, moneda='MXN') => {
-  if(v === null || v === undefined || v === '') return '—';
-  const n = Number(String(v).replace(/[^0-9.-]/g,''));
-  if(Number.isNaN(n)) return String(v);
-  return new Intl.NumberFormat('es-MX',{style:'currency',currency:moneda || 'MXN',maximumFractionDigits:0}).format(n);
-};
-const first = (...vals) => vals.find(v => clean(v).trim()) || '';
-const setText = (id, val, fallback='—') => { $(id).textContent = clean(val).trim() || fallback; };
-const setLink = (id, url) => {
-  const el = $(id);
-  if(clean(url).trim()){ el.href = url; el.classList.remove('hidden'); }
-  else { el.classList.add('hidden'); el.removeAttribute('href'); }
-};
-function videoEmbed(yt, mp4, label){
-  if(clean(mp4).trim()) return `<video controls preload="metadata" src="${escapeAttr(mp4)}"></video>`;
-  if(clean(yt).trim()){
-    const id = extractYouTubeId(yt);
-    if(id) return `<iframe src="https://www.youtube.com/embed/${escapeAttr(id)}" title="${escapeAttr(label)}" allowfullscreen></iframe>`;
-  }
-  return `<div class="video-empty">—</div>`;
+/* ─── CONFIG ─── */
+/* El proxy /api/airtable es el mismo que usa la intranet.
+   Para esta landing pública NO hay sesión JWT — la request
+   no lleva Authorization header y el proxy la bloquea.
+   Necesitas un endpoint público dedicado, p.ej. /api/ficha-publica,
+   o pasar los datos crudos como JSON en la URL (ver modo offline).
+
+   OPCIÓN A (recomendada): /api/ficha-publica?folio=XXXXX
+   OPCIÓN B (fallback demo):  ?demo=1  →  datos ficticios
+   OPCIÓN C (raw):  ?data=<base64-json>
+*/
+
+const PROXY = '/api/ficha-publica';           /* endpoint público del asesor        */
+const ASESOR_TABLE = 'tblIRPmLIyj8sWyEk';    /* tabla de asesores (para buscar foto) */
+const AIRTABLE_BASE_URL = 'https://api.airtable.com/v0/appRh791vGXRdOJs3';
+
+/* ─── HELPERS ─── */
+function qs(sel){ return document.querySelector(sel) }
+function setText(id, val){ const el=document.getElementById(id); if(el) el.textContent=String(val||'') }
+function setHTML(id, val){ const el=document.getElementById(id); if(el) el.innerHTML=val||'' }
+function show(id){ const el=document.getElementById(id); if(el) el.style.display='' }
+function hide(id){ const el=document.getElementById(id); if(el) el.style.display='none' }
+
+function fmtPrecio(raw, moneda){
+  if(!raw) return '';
+  const n = Number(String(raw).replace(/[^0-9.]/g,''));
+  if(!Number.isFinite(n)||n===0) return String(raw);
+  const mon = (moneda||'MXN').toUpperCase();
+  if(mon==='USD') return '$'+Math.round(n).toLocaleString('en-US');
+  return '$'+Math.round(n).toLocaleString('es-MX');
 }
-function extractYouTubeId(v){
-  v = clean(v).trim();
-  if(!v) return '';
-  if(/^[A-Za-z0-9_-]{8,}$/.test(v) && !v.includes('/')) return v;
-  try{
-    const u = new URL(v);
-    if(u.hostname.includes('youtu.be')) return u.pathname.replace('/','');
-    if(u.searchParams.get('v')) return u.searchParams.get('v');
-    const m = u.pathname.match(/\/embed\/([^/?]+)/); if(m) return m[1];
-  }catch(e){}
+
+function fld(fields, ...keys){
+  for(const k of keys){
+    const v = fields[k];
+    if(v === undefined || v === null || String(v).trim() === '') continue;
+    if(Array.isArray(v)){
+      if(v.length === 0) continue;
+      const f0 = v[0];
+      if(f0 && typeof f0 === 'object' && f0.url) return f0.url;
+      return v.map(x=>x?.name||x).join(', ');
+    }
+    if(typeof v === 'object') return v.name || v.url || '';
+    return String(v);
+  }
   return '';
 }
-function escapeHtml(s){return clean(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
-function escapeAttr(s){return escapeHtml(s).replace(/"/g,'&quot;')}
-function metric(k,v,s=''){
-  return `<article class="metric"><div class="metric-k">${escapeHtml(k)}</div><div class="metric-v">${escapeHtml(v || '—')}</div>${s?`<div class="metric-s">${escapeHtml(s)}</div>`:''}</article>`;
+
+function ytEmbed(id){ return `https://www.youtube.com/embed/${id.trim()}?autoplay=0&rel=0&modestbranding=1&color=white` }
+function ytThumb(id){ return `https://img.youtube.com/vi/${id.trim()}/hqdefault.jpg` }
+
+/* ─── PINTAR INTERFAZ ─── */
+function renderFicha(rec, asesorRec){
+  const f = rec.fields || {};
+
+  /* Topbar */
+  const folio = fld(f,'Folio NERI');
+  setText('tb-folio', folio || '—');
+
+  const estadoRaw = fld(f,'Estado Propiedad');
+  const estadoMap = {
+    'Disponible':'Disponible','Apartada':'Apartada','Vendida':'Vendida',
+    'En proceso':'En proceso','Suspendida':'Suspendida'
+  };
+  setText('tb-estado-txt', estadoMap[estadoRaw] || 'Ficha activa');
+
+  /* HERO */
+  const nombre = fld(f,'Nombre Propiedad') || 'Propiedad NERI';
+  const tipo = [fld(f,'Tipo de Propiedad'), fld(f,'Estado Propiedad')].filter(Boolean).join(' · ');
+  setText('hero-nombre', nombre);
+  setText('hero-tipo', tipo || 'Propiedad');
+  setText('hero-folio-sub', folio ? 'Folio ' + folio : '');
+
+  const fotoUrl = fld(f,'Foto de portada');
+  if(fotoUrl){
+    const img = document.getElementById('hero-img');
+    img.src = fotoUrl; img.style.display='block';
+    document.querySelector('.hero-placeholder').style.display='none';
+  }
+
+  /* PRECIO */
+  const precio = fld(f,'Precio Lista');
+  const moneda = fld(f,'Moneda') || 'MXN';
+  const precioMin = fld(f,'Precio Minimo');
+  const plusVal = fld(f,'Plusvalia Valor');
+
+  if(precio){
+    document.getElementById('precio-num').textContent = fmtPrecio(precio, moneda);
+    document.getElementById('precio-currency').textContent = moneda;
+    show('precio-strip');
+  }
+  if(precioMin){
+    document.getElementById('precio-min-num').textContent = fmtPrecio(precioMin, moneda);
+    show('precio-minimo-wrap');
+  }
+  if(plusVal){
+    document.getElementById('plusvalia-badge-val').textContent = plusVal;
+    show('plusvalia-badge-wrap');
+  }
+
+  /* FRASE */
+  const fraseInicio = fld(f,'Frase Inicio');
+  if(fraseInicio){
+    document.getElementById('frase-text').innerHTML = fraseInicio.replace(/\*([^*]+)\*/g,'<strong>$1</strong>');
+    show('frase-block');
+  }
+
+  /* SPECS NUMÉRICAS */
+  const specsData = [
+    [fld(f,'Habitaciones'),   'Recámaras'],
+    [fld(f,'Banos'),          'Baños'],
+    [fld(f,'Medios Banos'),   'Medios baños'],
+    [fld(f,'Estacionamientos'),'Estacionamientos'],
+    [fld(f,'Metros Construccion')&&(fld(f,'Metros Construccion')+' m²'), 'Construcción'],
+    [fld(f,'Metros Terreno')&&(fld(f,'Metros Terreno')+' m²'),           'Terreno'],
+  ].filter(([v])=>v);
+
+  if(specsData.length){
+    setText('specs-titulo', nombre);
+    const intro = fld(f,'Frase Portada');
+    if(intro){ document.getElementById('specs-intro').textContent=intro; show('specs-intro'); }
+    document.getElementById('specs-grid').innerHTML = specsData.map(([v,l])=>
+      `<div class="spec"><div class="spec-val">${v}</div><div class="spec-lbl">${l}</div></div>`
+    ).join('');
+  }
+
+  /* DATOS UBICACIÓN */
+  const datosRows = [
+    ['Tipo de propiedad',  fld(f,'Tipo de Propiedad')],
+    ['Estado',             fld(f,'Estado Propiedad')],
+    ['Zona / Colonia',     fld(f,'Zona / Colonia')],
+    ['Municipio',          fld(f,'Municipio')],
+    ['Estado / Entidad',   fld(f,'Estado / Entidad')],
+    ['Dirección',          fld(f,'Direccion')],
+  ].filter(([,v])=>v);
+
+  if(datosRows.length){
+    document.getElementById('datos-grid').innerHTML = datosRows.map(([k,v])=>`
+      <div class="dato${k==='Dirección'?' full':''}">
+        <div class="dato-k">${k}</div>
+        <div class="dato-v">${v}</div>
+      </div>`).join('');
+  } else {
+    hide('section-datos');
+  }
+
+  /* PLUSVALÍA DETALLADA */
+  const plusTxt = fld(f,'Plusvalia Texto');
+  if(plusVal || plusTxt){
+    if(plusVal) document.getElementById('plusvalia-val').textContent = plusVal;
+    if(plusTxt) document.getElementById('plusvalia-txt').textContent = plusTxt;
+    show('section-plusvalia');
+  }
+
+  /* TOUR VIRTUAL */
+  const tourLink = fld(f,'Link Tour Virtual');
+  if(tourLink){
+    document.getElementById('tour-link').href = tourLink;
+    show('section-tour');
+  }
+
+  /* VIDEOS — mismos campos que la intranet + iDrive fields */
+  const videoSlots = [
+    {room:'Sala',      yt:fld(f,'Video Sala'),     idr:fld(f,'Video Sala iDrive'),     mp4:null},
+    {room:'Cocina',    yt:fld(f,'Video Cocina'),   idr:fld(f,'Video Cocina iDrive'),   mp4:null},
+    {room:'Recámara',  yt:fld(f,'Video Recamara'), idr:fld(f,'Video Recamara iDrive'), mp4:null},
+    {room:'Jardín',    yt:fld(f,'Video Jardin'),   idr:fld(f,'Video Jardin iDrive'),   mp4:null},
+    {room:'Alberca',   yt:fld(f,'Video Alberca'),  idr:fld(f,'Video Alberca iDrive'),  mp4:null},
+  ];
+  /* Extra con nombre dinámico */
+  const extraNombre = fld(f,'Nombre Video Extra');
+  const extraYt   = fld(f,'Video Extra MP4');   /* campo "MP4" puede tener ID de YT */
+  const extraIdr  = fld(f,'Video Extra iDrive');
+  if(extraNombre || extraYt || extraIdr){
+    videoSlots.push({room: extraNombre||'Extra', yt: extraYt, idr: extraIdr, mp4:null});
+  }
+
+  /* Fallback: si iDrive field vacío, revisar attachment mp4 */
+  const mp4Fields = {
+    'Sala':'Video Sala MP4','Cocina':'Video Cocina MP4','Recámara':'Video Recamara MP4',
+    'Jardín':'Video Jardin MP4','Alberca':'Video Alberca MP4',
+  };
+  videoSlots.forEach(s=>{
+    if(!s.idr && mp4Fields[s.room]){
+      const att = f[mp4Fields[s.room]];
+      if(Array.isArray(att)&&att[0]) s.mp4 = att[0].url;
+    }
+  });
+
+  const activeVideos = videoSlots.filter(s => s.yt || s.idr || s.mp4);
+  if(activeVideos.length){
+    document.getElementById('video-grid').innerHTML = activeVideos.map(s=>{
+      let embed = '';
+      if(s.yt && s.yt.length < 20){  /* ID corto = YouTube */
+        embed = `<iframe src="${ytEmbed(s.yt)}" title="${s.room}" allowfullscreen loading="lazy"></iframe>`;
+      } else if(s.idr){
+        /* iDrive URL privada → firmada por el asesor vía Make proxy, o URL directa */
+        embed = `<video controls preload="none" poster="">
+          <source src="${s.idr}" type="video/mp4">
+        </video>`;
+      } else if(s.yt){
+        /* Podría ser URL completa de YouTube */
+        const ytMatch = s.yt.match(/(?:v=|youtu\.be\/)([A-Za-z0-9_-]{11})/);
+        if(ytMatch){
+          embed = `<iframe src="${ytEmbed(ytMatch[1])}" title="${s.room}" allowfullscreen loading="lazy"></iframe>`;
+        } else {
+          embed = `<video controls preload="none"><source src="${s.yt}" type="video/mp4"></video>`;
+        }
+      } else if(s.mp4){
+        embed = `<video controls preload="none"><source src="${s.mp4}" type="video/mp4"></video>`;
+      }
+      return `<div class="video-item">
+        <div class="video-wrap">${embed}</div>
+        <div class="video-lbl">${s.room}</div>
+      </div>`;
+    }).join('');
+    show('section-videos');
+  }
+
+  /* MAPA */
+  const mapsUrl = fld(f,'Google Maps URL');
+  const dir = fld(f,'Direccion');
+  if(mapsUrl){
+    let embedUrl = mapsUrl;
+    if(mapsUrl.includes('maps/embed')){ embedUrl = mapsUrl; }
+    else if(mapsUrl.includes('maps.google') || mapsUrl.includes('goo.gl') || mapsUrl.includes('google.com/maps')){
+      const q = encodeURIComponent(dir || nombre);
+      embedUrl = `https://maps.google.com/maps?q=${q}&output=embed&z=15`;
+    }
+    document.getElementById('mapa-wrap').innerHTML = `<iframe src="${embedUrl}" title="Mapa" allowfullscreen loading="lazy"></iframe>`;
+    if(dir) setText('mapa-dir', '📍 '+dir);
+    show('section-mapa');
+  } else if(dir){
+    const q = encodeURIComponent(dir);
+    document.getElementById('mapa-wrap').innerHTML = `<iframe src="https://maps.google.com/maps?q=${q}&output=embed&z=15" title="Mapa" allowfullscreen loading="lazy"></iframe>`;
+    setText('mapa-dir', '📍 '+dir);
+    show('section-mapa');
+  }
+
+  /* ASESOR */
+  const asesorNombre = asesorRec ? fld(asesorRec.fields,'Nombre') : fld(f,'Asesor');
+  const asesorWa = asesorRec ? fld(asesorRec.fields,'Teléfono WhatsApp') : '';
+  const asesorFrase = asesorRec ? fld(asesorRec.fields,'Frase') : '';
+  const asesorFotoAtt = asesorRec ? (asesorRec.fields['Foto']||[])[0] : null;
+  const asesorFotoUrl = asesorFotoAtt ? (asesorFotoAtt.thumbnails?.large?.url || asesorFotoAtt.url) : '';
+
+  if(asesorNombre){
+    setText('asesor-nombre', asesorNombre);
+    if(asesorFrase) setText('asesor-frase', asesorFrase);
+    if(asesorFotoUrl){
+      document.getElementById('asesor-foto-wrap').innerHTML = `<img class="asesor-foto" src="${asesorFotoUrl}" alt="${asesorNombre}">`;
+    } else {
+      const initials = asesorNombre.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+      document.getElementById('asesor-foto-wrap').innerHTML = `<div class="asesor-foto-empty">${initials}</div>`;
+    }
+    const phone = asesorWa ? asesorWa.replace(/\D/g,'') : '';
+    const waMsg = encodeURIComponent(`Hola, vi la ficha de la propiedad "${nombre}" (${folio||'sin folio'}) y me interesa saber más.`);
+    if(phone){
+      document.getElementById('asesor-wa').href = `https://wa.me/${phone}?text=${waMsg}`;
+    } else {
+      document.getElementById('asesor-wa').style.display='none';
+    }
+    show('section-asesor');
+  }
+
+  /* MOSTRAR TODO */
+  document.getElementById('screen-loading').style.display='none';
+  document.getElementById('screen-main').style.display='block';
+  document.getElementById('screen-main').style.animation='fadeUp .5s ease forwards';
 }
-function spec(k,v){
-  return `<article class="spec"><div class="spec-k">${escapeHtml(k)}</div><div class="spec-v">${escapeHtml(v || '—')}</div></article>`;
+
+/* ─── DEMO DATA ─── */
+function renderDemo(){
+  const demoRec = { fields:{
+    'Folio NERI':'NRI-2024-001',
+    'Nombre Propiedad':'Casa Residencial Cuernavaca',
+    'Tipo de Propiedad':'Casa',
+    'Estado Propiedad':'Disponible',
+    'Precio Lista':3500000,'Moneda':'MXN',
+    'Precio Minimo':3200000,
+    'Plusvalia Valor':'12% anual','Plusvalia Texto':'La zona de Chapultepec registra incremento sostenido en valor por m² desde 2019, impulsado por infraestructura y conectividad.',
+    'Habitaciones':3,'Banos':2,'Medios Banos':1,'Estacionamientos':2,
+    'Metros Construccion':220,'Metros Terreno':350,
+    'Zona / Colonia':'Chapultepec','Municipio':'Cuernavaca','Estado / Entidad':'Morelos',
+    'Direccion':'Privada Las Flores 14, Chapultepec, Cuernavaca',
+    'Frase Inicio':'Una propiedad diseñada para *vivir bien*. Espacios amplios, luz natural y acabados de primera en una de las zonas con mayor plusvalía de Cuernavaca.',
+    'Asesor':'Laura García',
+  }};
+  const demoAsesor = { fields:{
+    'Nombre':'Laura García',
+    'Teléfono WhatsApp':'527771234567',
+    'Frase':'Te acompaño en cada etapa de tu compra, con claridad y sin sorpresas.',
+  }};
+  renderFicha(demoRec, demoAsesor);
 }
-function videoCard(label, yt, mp4){
-  if(!clean(yt).trim() && !clean(mp4).trim()) return '';
-  return `<article class="video-card"><div class="video-frame">${videoEmbed(yt,mp4,label)}</div><div class="video-body"><div class="video-k">${escapeHtml(label)}</div><div class="video-v">Material visual cargado desde la ficha de propiedad.</div></div></article>`;
-}
-async function init(){
+
+/* ─── FETCH REAL ─── */
+async function cargarFicha(){
   const params = new URLSearchParams(location.search);
-  const token = first(params.get('t'), params.get('token'));
-  const folio = params.get('folio');
-  const qs = token ? `t=${encodeURIComponent(token)}` : (folio ? `folio=${encodeURIComponent(folio)}` : '');
-  if(!qs) return fail('Falta token o folio en la URL. Ejemplo: ?t=TOKEN o ?folio=CVA-2026-0001');
+  const folio  = params.get('folio');
+  const recId  = params.get('rec');   /* alternativa: ID directo del record */
+  const demo   = params.get('demo');
+  const rawData = params.get('data'); /* datos en base64 JSON */
+
+  /* MODO DEMO */
+  if(demo === '1' || demo === 'true'){
+    renderDemo(); return;
+  }
+
+  /* MODO RAW (datos crudos embebidos en el link) */
+  if(rawData){
+    try{
+      const decoded = JSON.parse(atob(rawData));
+      renderFicha({ fields: decoded }, null);
+    }catch(e){
+      mostrarError('Los datos del enlace están malformados. Solicita un enlace nuevo.');
+    }
+    return;
+  }
+
+  /* MODO API — requiere el endpoint /api/ficha-publica en Vercel */
+  if(!folio && !recId){
+    mostrarError('Enlace incompleto: falta el folio o identificador de la propiedad.');
+    return;
+  }
+
   try{
-    const r = await fetch('/api/ficha-tecnica?' + qs);
-    const j = await r.json();
-    if(!r.ok || !j.ok) throw new Error(j.error || 'No se pudo cargar la ficha.');
-    render(j.propiedad || {});
-  }catch(e){ fail(e.message); }
+    const qs = folio ? `folio=${encodeURIComponent(folio)}` : `rec=${encodeURIComponent(recId)}`;
+    const resp = await fetch(`${PROXY}?${qs}`);
+    const data = await resp.json().catch(()=>({}));
+
+    if(!resp.ok || data.error){
+      mostrarError(data.error || `No se pudo cargar la ficha (HTTP ${resp.status}).`);
+      return;
+    }
+
+    const propRec  = data.record  || data;
+    const asesorRec = data.asesor || null;
+    renderFicha(propRec, asesorRec);
+
+  }catch(e){
+    /* Fallback: intenta modo demo si el endpoint no existe aún */
+    if(folio === 'demo' || e.message.includes('fetch')){
+      renderDemo(); return;
+    }
+    mostrarError('No se pudo conectar con el servidor. Verifica tu conexión e intenta de nuevo.');
+  }
 }
-function render(p){
-  const nombre = first(p['Nombre Propiedad'], 'Propiedad Método NERI');
-  const folio = first(p['Folio NERI'], p['Folio Vendedor']);
-  const moneda = first(p['Moneda'], 'MXN');
-  const precio = money(p['Precio Lista'], moneda);
-  const ubic = [p['Zona / Colonia'], p['Municipio'], p['Estado / Entidad']].filter(Boolean).join(' · ');
-  const cover = p['Foto de portada'];
-  setText('top-folio', folio ? `Folio ${folio}` : 'Ficha técnica');
-  setText('footer-folio', folio ? `Folio ${folio}` : 'Ficha técnica');
-  setText('top-status', first(p['Estado Propiedad'], 'Disponible'));
-  setText('hero-type', first(p['Tipo de Propiedad'], 'Ficha técnica inmobiliaria'));
-  $('hero-title').innerHTML = `${escapeHtml(nombre)} <em></em>`;
-  setText('hero-phrase', first(p['Frase Portada'], 'Una propiedad presentada con claridad, orden y criterio.'));
-  setText('hero-price', precio);
-  setText('hero-location', first(ubic, p['Direccion'], 'Ubicación por confirmar'));
-  setText('frase-inicio', first(p['Frase Inicio'], 'Información ordenada para tomar una mejor decisión.'));
-  const plus = first(p['Plusvalia Texto'], p['Plusvalia Valor']);
-  $('plusvalia-texto').innerHTML = plus ? escapeHtml(plus).replace(/\n/g,'<br>') : 'Sin texto de plusvalía cargado aún.';
-  if(cover){ $('hero-img').src = cover; $('hero-img').classList.remove('hidden'); }
-  setLink('tour-btn', p['Link Tour Virtual']); setLink('cta-tour', p['Link Tour Virtual']);
-  setLink('maps-btn', p['Google Maps URL']); setLink('cta-maps', p['Google Maps URL']);
-  $('summary-strip').innerHTML = [
-    metric('Tipo', first(p['Tipo de Propiedad'],'—')),
-    metric('Recámaras', p['Habitaciones'] || '—'),
-    metric('Baños', [p['Banos'], p['Medios Banos'] ? `${p['Medios Banos']} medios` : ''].filter(Boolean).join(' + ')),
-    metric('Autos', p['Estacionamientos'] || '—'),
-    metric('Construcción', p['Metros Construccion'] ? `${p['Metros Construccion']} m²` : '—')
-  ].join('');
-  $('spec-grid').innerHTML = [
-    spec('Nombre de la propiedad', nombre), spec('Folio NERI', folio), spec('Estado', p['Estado Propiedad']),
-    spec('Precio de lista', precio), spec('Precio mínimo', p['Precio Minimo'] ? money(p['Precio Minimo'], moneda) : ''), spec('Moneda', moneda),
-    spec('Tipo de propiedad', p['Tipo de Propiedad']), spec('Habitaciones', p['Habitaciones']), spec('Baños', p['Banos']),
-    spec('Medios baños', p['Medios Banos']), spec('Estacionamientos', p['Estacionamientos']), spec('Construcción', p['Metros Construccion'] ? `${p['Metros Construccion']} m²` : ''),
-    spec('Terreno', p['Metros Terreno'] ? `${p['Metros Terreno']} m²` : ''), spec('Zona / Colonia', p['Zona / Colonia']), spec('Municipio', p['Municipio']),
-    spec('Estado / Entidad', p['Estado / Entidad']), spec('Dirección', p['Direccion']), spec('Plusvalía', p['Plusvalia Valor'])
-  ].join('');
-  const videos = [
-    videoCard('Sala', p['Video Sala'], p['Video Sala MP4']), videoCard('Cocina', p['Video Cocina'], p['Video Cocina MP4']),
-    videoCard('Recámara', p['Video Recamara'], p['Video Recamara MP4']), videoCard('Jardín', p['Video Jardin'], p['Video Jardin MP4']),
-    videoCard('Alberca', p['Video Alberca'], p['Video Alberca MP4']), videoCard(first(p['Nombre Video Extra'],'Extra'), '', p['Video Extra MP4'])
-  ].filter(Boolean).join('');
-  if(videos) $('video-grid').innerHTML = videos; else $('videos-section').classList.add('hidden');
-  $('loading').classList.add('hidden'); $('app').classList.remove('hidden');
+
+function mostrarError(msg){
+  document.getElementById('screen-loading').style.display='none';
+  document.getElementById('err-msg').textContent = msg || 'Error desconocido.';
+  document.getElementById('screen-error').style.display='flex';
 }
-function fail(msg){
-  $('loading').innerHTML = `<div class="loading-card"><div class="loading-k">Ficha no disponible</div><div class="loading-title">No se pudo pintar</div><div class="loading-txt">${escapeHtml(msg)}</div></div>`;
-}
-function shareFicha(){
-  if(navigator.share) navigator.share({title:document.title,url:location.href}).catch(()=>{});
-  else navigator.clipboard?.writeText(location.href).then(()=>alert('Liga copiada'));
-}
-init();
+
+/* ─── INICIO ─── */
+cargarFicha();
 </script>
 </body>
 </html>
